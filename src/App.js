@@ -1,24 +1,28 @@
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { AddUser } from './components/AddUser';
+import { UsersList } from './components/UsersList';
+import { EditUser } from "./components/EditUser";
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import usersData from "./data.json";
+import { setData } from "./store/DataSlice";
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(setData(usersData))
+  }, [dispatch]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route path='/' element={<UsersList />} />
+        <Route path='/user/add' element={<AddUser />} />
+        <Route path='/user/edit/:user' element={<EditUser />} />
+      </Routes>
+    </Router>
   );
 }
 
