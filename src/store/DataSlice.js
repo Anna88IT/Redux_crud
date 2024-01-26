@@ -33,8 +33,5 @@ export const dataSlice = createSlice({
     }
 });
 
-export const { setData } = dataSlice.actions;
-export const { addData } = dataSlice.actions;
-export const { deleteData } = dataSlice.actions;
-export const { updateData } = dataSlice.actions;
+export const { setData, addData, deleteData, updateData } = dataSlice.actions;
 export default dataSlice.reducer;
